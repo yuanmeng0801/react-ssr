@@ -3,23 +3,20 @@ import ReactDOM from 'react-dom'
 import Home from '../components/home'
 import Login from '../components/login'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-// import { Provider } from 'react-redux'
-// import store from '../components/store'
+import { Provider } from 'react-redux'
+import getStore from '../components/store'
 
 class App extends React.Component {
   render() {
     return (
-      // <Provider store={store}>
-      <Router>
-        <Link to="/">home</Link>
-        <br />
-        <Link to="/login">login</Link>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
-      </Router>
-      // </Provider>
+      <Provider store={getStore()}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </Router>
+      </Provider>
     )
   }
 }

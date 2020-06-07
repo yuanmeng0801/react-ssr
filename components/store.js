@@ -1,15 +1,19 @@
 import { applyMiddleware, createStore } from 'redux'
 import createThunkMiddleware from 'redux-thunk'
 
-const initialState = [1, 2, 3]
+const initialState = { arr: [1, 2, 3] }
 
 const reducer = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
+    case 'changeList':
+      return { ...state, arr: action.payload }
     default:
       return state
   }
 }
 
-const store = createStore(reducer, applyMiddleware(createThunkMiddleware()))
+const getStore = () => {
+  return createStore(reducer, applyMiddleware(createThunkMiddleware))
+}
 
-export default store
+export default getStore
